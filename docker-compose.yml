@@ -11,7 +11,7 @@ services:
       - '.:/go/src/github.com/stobita/bike_api/'
     ports:
       - '8085:8085'
-    command: 'gin --port 8085 server.go'
+    command: 'realize start --run --no-config'
     environment:
       PORT: 8085
       BIKE_DB_USER: gouser
