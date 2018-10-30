@@ -1,4 +1,4 @@
-FROM golang:1.10
+FROM golang:1.11
 
 RUN go get github.com/go-sql-driver/mysql
 RUN go get github.com/pressly/goose
