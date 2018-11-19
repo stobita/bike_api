@@ -73,6 +73,17 @@
   version = "v1.3.0"
 
 [[projects]]
+  digest = "1:a9fe0f8ff72c388d0128e88ce5f3c27d37dcd0950acd7cdb8323555f12463396"
+  name = "github.com/go-chi/chi"
+  packages = [
+    ".",
+    "middleware",
+  ]
+  pruneopts = "UT"
+  revision = "b5294d10673813fac8558e7f47242bc9e61b4c25"
+  version = "v3.3.3"
+
+[[projects]]
   digest = "1:adea5a94903eb4384abef30f3d878dc9ff6b6b5b0722da25b82e5169216dfb61"
   name = "github.com/go-sql-driver/mysql"
   packages = ["."]
@@ -117,6 +128,17 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "0b12d6b5"
+
+[[projects]]
+  digest = "1:6c41d4f998a03b6604227ccad36edaed6126c397e5d78709ef4814a1145a6757"
+  name = "github.com/jmoiron/sqlx"
+  packages = [
+    ".",
+    "reflectx",
+  ]
+  pruneopts = "UT"
+  revision = "d161d7a76b5661016ad0b085869f77fd410f3e6a"
+  version = "v1.2.0"
 
 [[projects]]
   digest = "1:be97e109f627d3ba8edfef50c9c74f0d0c17cbe3a2e924a8985e4804a894f282"
@@ -200,8 +222,11 @@
     "github.com/aws/aws-sdk-go/service/s3",
     "github.com/dgrijalva/jwt-go",
     "github.com/gin-gonic/gin",
+    "github.com/go-chi/chi",
+    "github.com/go-chi/chi/middleware",
     "github.com/go-sql-driver/mysql",
     "github.com/go-xorm/xorm",
+    "github.com/jmoiron/sqlx",
     "github.com/pressly/goose",
     "golang.org/x/crypto/bcrypt",
   ]
