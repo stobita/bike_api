@@ -10,7 +10,7 @@ require (
 	github.com/go-xorm/builder v0.3.2
 	github.com/go-xorm/core v0.6.0
 	github.com/go-xorm/xorm v0.7.1
-	github.com/golang/protobuf v0.0.0-20170601230230-5a0f697c9ed9
+	github.com/golang/protobuf v1.2.0
 	github.com/jmespath/go-jmespath v0.0.0-20160202185014-0b12d6b521d8
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/json-iterator/go v0.0.0-20170829155851-36b14963da70
