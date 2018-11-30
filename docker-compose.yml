@@ -6,12 +6,12 @@ version: '3'
 services:
   app:
     build: ./containers/app
-    working_dir: "/go/src/github.com/stobita/bike_api/"
+    working_dir: /app
     volumes:
-      - '.:/go/src/github.com/stobita/bike_api/'
+      - '.:/app/'
     ports:
       - '8085:8085'
-    command: 'realize start --run --no-config'
+    command: realize start --run --no-config
     environment:
       PORT: 8085
       BIKE_DB_USER: gouser

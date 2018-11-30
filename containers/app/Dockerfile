@@ -1,6 +1,6 @@
 FROM golang:1.11
 
-RUN go get -u github.com/golang/dep/cmd/dep
+COPY . /app
+WORKDIR /app
 RUN go get -u github.com/oxequa/realize
 
-CMD ["dep", "ensure"]
