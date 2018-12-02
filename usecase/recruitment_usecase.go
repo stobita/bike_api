@@ -16,19 +16,12 @@ type RecruitmentRepository interface {
 }
 
 type RecruitmentUsecase struct {
-	OutputPort      RecruitmentOutputPort
-	RecruitmentRepo RecruitmentRepository
-}
-
-func NewRecruitmentUsecase(outputPort RecruitmentOutputPort, repository RecruitmentRepository) RecruitmentInputPort {
-	return &RecruitmentUsecase{
-		OutputPort:      outputPort,
-		RecruitmentRepo: repository,
-	}
+	OutputPort RecruitmentOutputPort
+	Repository RecruitmentRepository
 }
 
 func (r *RecruitmentUsecase) GetRecruitmentByUserID(userID int) error {
-	recruitment, err := r.RecruitmentRepo.GetRecruitmentByUserID(userID)
+	recruitment, err := r.Repository.GetRecruitmentByUserID(userID)
 	if err != nil {
 		r.OutputPort.RenderError(err)
 	}

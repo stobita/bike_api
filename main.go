@@ -16,11 +16,12 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+
 	recruitmentController := controller.RecruitmentController{
 		InputFactory: func(o usecase.RecruitmentOutputPort) usecase.RecruitmentInputPort {
 			interactor := &usecase.RecruitmentUsecase{
-				RecruitmentRepo: &gateway.RecruitmentRepository{SqlHandler: driver.NewDBConn()},
-				OutputPort:      o,
+				Repository: &gateway.RecruitmentRepository{SqlHandler: driver.NewDBConn()},
+				OutputPort: o,
 			}
 			return interactor
 		},
@@ -28,9 +29,11 @@ func main() {
 			return &presenter.RecruitmentPresenter{Writer: w}
 		},
 	}
+
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		recruitmentController.GetRecruitmentByUserID(w, r)
 	})
+
 	port := os.Getenv("PORT")
 	http.ListenAndServe(":"+port, r)
 }
