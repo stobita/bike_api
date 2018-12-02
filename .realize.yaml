@@ -1,0 +1,23 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+server:
+  host: 0.0.0.0
+  port: 5002
+schema:
+- name: bike_api
+  path: .
+  commands:
+    run:
+        status: true
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignore:
+      paths:
+      - .git
+      - .realize
+      - vendor
