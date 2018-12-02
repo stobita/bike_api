@@ -16,24 +16,20 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	recruitmentController := controller.RecruitmentController{
+		InputFactory: func(o usecase.RecruitmentOutputPort) usecase.RecruitmentInputPort {
+			interactor := &usecase.RecruitmentUsecase{
+				RecruitmentRepo: &gateway.RecruitmentRepository{SqlHandler: driver.NewDBConn()},
+				OutputPort:      o,
+			}
+			return interactor
+		},
+		OutputFactory: func(w http.ResponseWriter) usecase.RecruitmentOutputPort {
+			return &presenter.RecruitmentPresenter{Writer: w}
+		},
+	}
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		recruitmentInteractor := &usecase.RecruitmentUsecase{}
-		recruitmentInteractor.RecruitmentRepo = &gateway.RecruitmentRepository{
-			SqlHandler: driver.NewDBConn(),
-		}
-		recruitmentInteractor.OutputPort = &presenter.RecruitmentPresenter{
-			Writer: w,
-		}
-		handler := controller.RecruitmentController{
-			InputFactory: func(o usecase.RecruitmentOutputPort) usecase.RecruitmentInputPort {
-				return recruitmentInteractor
-
-			},
-			OutputFactory: func(w http.ResponseWriter) usecase.RecruitmentOutputPort {
-				return recruitmentInteractor.OutputPort
-			},
-		}
-		handler.GetRecruitmentByUserID(w, r)
+		recruitmentController.GetRecruitmentByUserID(w, r)
 	})
 	port := os.Getenv("PORT")
 	http.ListenAndServe(":"+port, r)
